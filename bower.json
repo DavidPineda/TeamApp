@@ -1,0 +1,11 @@
+{
+  "name": "TeamApp",
+  "homepage": "https://github.com/DavidPineda/TeamApp",
+  "authors": [
+    "David Pineda"
+  ],
+  "description": "Trabajo Final Next University",
+  "main": "",
+  "license": "MIT",
+  "private": true
+}
