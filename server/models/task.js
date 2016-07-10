@@ -1,7 +1,7 @@
 var models = require('./models');
 Schema = models.Schema;
 
-var TaskSchema = new Schema({
+var taskSchema = new Schema({
     description: String,
     user: {type: Schema.Types.ObjectId, ref: 'User'},
     ended: {
@@ -10,5 +10,5 @@ var TaskSchema = new Schema({
     }
 });
 
-var Task = models.model('Task', TaskSchema, 'tasks');
+var Task = models.model('Task', taskSchema, 'tasks');
 module.exports = Task;

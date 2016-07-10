@@ -1,12 +1,18 @@
 var models = require('./models');
 Schema = models.Schema;
 
-var UserSchema = new Schema({
-    name: string,
-    username: string,
-    password: string,
-    twitter: string
+var userSchema = new Schema({
+    name: String,
+    username: String,
+    password: String,
+    twitter: String
 });
 
-var User = models.model('User', UserSchema, 'users');
+userSchema.methods = {
+    authenticate: function(password){
+        return this.password == password;
+    }
+}
+
+var User = models.model('User', userSchema, 'users');
 module.exports = User;

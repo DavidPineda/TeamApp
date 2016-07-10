@@ -1,8 +1,8 @@
-var app = angular.module('Teamapp',['ui.router']);
+var app = angular.module('Teamapp',['ui.router', 'ngAnimate', 'toastr']);
 
 app.config(['$stateProvider',"$urlRouterProvider", function($stateProvider, $urlRouterProvider){
 	$urlRouterProvider.otherwise('/app/dashboard');
-	$stateProvider.state('app',{
+	$stateProvider.state('app',{		
 		url: '/app',
 		templateUrl: 'partials/index/templates/index.html',
 		controller: 'indexCtrl'
@@ -18,5 +18,13 @@ app.config(['$stateProvider',"$urlRouterProvider", function($stateProvider, $url
 	}).state('app.resources',{
 		url: '/resources',
 		templateUrl: 'partials/resources/templates/resources.html',
-	});
+	}).state('register',{
+		url: '/register',
+		templateUrl: 'partials/sign/templates/register.html',
+		controller: 'registerCtrl'
+	}).state('login',{
+		url: '/login',
+		templateUrl: 'partials/sign/templates/login.html',
+		controller: 'loginCtrl'
+	});	
 }]);

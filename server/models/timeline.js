@@ -1,7 +1,7 @@
 var models = require('./models');
 Schema = models.Schema;
 
-var TimelineSchema = new Schema({
+var timelineSchema = new Schema({
     user: {type: Schema.Types.ObjectId, ref: 'User'},
     task: {type: Schema.Types.ObjectId, ref: 'Task'},
     resource: {type: Schema.Types.ObjectId, ref: 'Resource'},
@@ -11,5 +11,5 @@ var TimelineSchema = new Schema({
     description: string
 });
 
-var Timeline = models.model('Timeline', TimelineSchema);
+var Timeline = models.model('Timeline', timelineSchema);
 module.exports = Timeline;
