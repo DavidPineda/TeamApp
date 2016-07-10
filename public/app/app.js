@@ -16,6 +16,7 @@ app.config(['$stateProvider',"$urlRouterProvider", function($stateProvider, $url
 	}).state('app.task',{
 		url: '/task',
 		templateUrl: 'partials/task/templates/task.html',
+		controller: 'taskCtrl'
 	}).state('app.resources',{
 		url: '/resources',
 		templateUrl: 'partials/resources/templates/resources.html'

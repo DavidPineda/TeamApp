@@ -5,8 +5,8 @@ var taskSchema = new Schema({
     description: String,
     user: {type: Schema.Types.ObjectId, ref: 'User'},
     ended: {
-        estatus: {type: Boolean, default: false},
-        fecha: Date
+        status: {type: Boolean, default: false},
+        date: {type: Date, default: new Date()}
     }
 });
 

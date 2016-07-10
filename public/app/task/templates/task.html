@@ -6,13 +6,13 @@
                 <h3 class="box-title">To Do List</h3>
             </div>
             <div class="box-body">
-                <form>
+                <form ng-submit="saveTask()">
                     <div class="form-group">
                         <div class="col-xs-3">
-                            <input name="descripcion" type="text" class="form-control" placeholder="Descripcion">
+                            <input name="description" ng-model="item.description" type="text" class="form-control" placeholder="Descripcion">
                         </div>
                         <div class="col-xs-3">
-                            <button type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i></button>                            
+                            <button type="submit" class="btn btn-primary pull-left"><i class="fa fa-check"></i>Crear</button>                            
 
                         </div>                        
                     </div>
@@ -20,14 +20,14 @@
                 </br>
                 </br>
                 <ul class="todo-list" style="overflow:auto;height:200px;">
-                    <li>
-                        <input type="checkbox">
-                        <span class="text">Tarea 1</span>
+                    <li ng-repeat="task in tasks">
+                        <input type="checkbox" ng-model="task.ended.status" value="{{task.ended.status}}">
+                        <span class="text">{{task.description}}</span>
                     </li>
                 </ul>
             </div>
             <div class="box-footer clearfix no-border">
-                <button class="btn btn-primary pull-right">Guardar</button>
+                <button class="btn btn-primary pull-right" ng-click="sendEndeds()">Guardar</button>
             </div>
         </div>
     </div>
@@ -37,23 +37,22 @@
         <h3 class="box-title">Historial de Tareas Finalizadas</h3>
     </div>
     <div class="box-body no-padding">
-        <table class="table table-condensed">
+        <div class="callout callout-danger" ng-show="!taskEndeds.length">
+            <h4>Aún no haz finalizado Tareas!</h4>
+            <p>Aqui mostraremos tu historial de tareas finalizadas.</p>
+        </div>
+        <table class="table table-condensed" ng-hide="!taskEndeds.length">
             <tbody>
                 <tr>
                     <th>Descripcion</th>
                     <th>Fecha</th>
                     <th style="width: 40px">Estado</th>
                 </tr>
-                <tr>
-                    <td>Tarea 2</td>
-                    <td>28/05/1992</td>
+                <tr ng-repeat="taskEnd in taskEndeds">
+                    <td>{{taskEnd.description}}</td>
+                    <td>{{taskEnd.ended.date | date: 'yyyy-MM-dd'}}</td>
                     <td><span class="badge bg-green">Finalizado</span></td>
                 </tr>
-                <tr>
-                    <td>Tarea 3</td>
-                    <td>29/05/1992</td>
-                    <td><span class="badge bg-green">Finalizado</span></td>
-                </tr>                            
             </tbody>
         </table>
     </div>

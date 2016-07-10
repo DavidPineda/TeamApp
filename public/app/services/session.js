@@ -1,5 +1,5 @@
 angular.module('Teamapp').factory('Session', function($http, $state, $rootScope){
-   function User() {
+   function User(){
        this.logIn = function(user){
            return $http.post('/login', user);
        }
@@ -24,8 +24,5 @@ angular.module('Teamapp').factory('Session', function($http, $state, $rootScope)
        isLogged: user.isLogged,
        logOut: user.logOut
    }
-
-   //user.getUser();
-   //user.isLogged();
    return Session;
 });
