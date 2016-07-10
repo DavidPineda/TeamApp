@@ -5,14 +5,14 @@ exports.register = function(req, res, next){
     var user = new User(req.body);
     user.save(function(err, user){
         if(err){
-            res.send({sucess: false, message: err});
+            res.send({success: false, message: err});
         }else{
             req.logIn(user, function(err){
                 if(!err){
-                    res.send({logged: true, sucess: true, user: req.session.passport});
+                    res.send({logged: true, success: true, user: req.session.passport});
                 }else{
                     console.log(err);
-                    res.send({logged: false, sucess: true, user: user})
+                    res.send({logged: false, success: true, user: user})
                 }
             });
         }
@@ -27,14 +27,14 @@ exports.login = function(req, res, next){
        }
        if(!user){
            console.log('Not User');
-           res.send({sucess: false});
+           res.send({success: false});
        }else{
             req.login(user, function(err){
                 if(err){
                     console.log('Error in Login');
                     return next(err);
                 }
-                res.send({sucess: true, user: user});
+                res.send({success: true, user: user});
             });
        }
     });

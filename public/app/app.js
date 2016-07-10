@@ -9,6 +9,7 @@ app.config(['$stateProvider',"$urlRouterProvider", function($stateProvider, $url
 	}).state('app.dashboard',{
 		url: '/dashboard',
 		templateUrl: 'partials/dashboard/templates/dashboard.html',
+		controller: 'dashboardCtrl'
 	}).state('app.chat',{
 		url: '/chat',
 		templateUrl: 'partials/chat/templates/chat.html',
@@ -17,7 +18,7 @@ app.config(['$stateProvider',"$urlRouterProvider", function($stateProvider, $url
 		templateUrl: 'partials/task/templates/task.html',
 	}).state('app.resources',{
 		url: '/resources',
-		templateUrl: 'partials/resources/templates/resources.html',
+		templateUrl: 'partials/resources/templates/resources.html'
 	}).state('register',{
 		url: '/register',
 		templateUrl: 'partials/sign/templates/register.html',

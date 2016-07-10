@@ -5,7 +5,7 @@ var userSchema = new Schema({
     name: String,
     username: String,
     password: String,
-    twitter: String
+    twitter: Schema.Types.Mixed
 });
 
 userSchema.methods = {

@@ -1,6 +1,6 @@
 angular.module('Teamapp').service('toastF', function(toastr){
-    this.sucess = function(msg) {
-        toastr.sucess(msg);
+    this.success = function(msg) {
+        toastr.success(msg);
     }
     this.error = function(msg){
         toastr.error(msg);

@@ -21,12 +21,11 @@ angular.module('Teamapp').factory('Session', function($http, $state, $rootScope)
    var Session = {
        logIn: user.logIn,
        getUser: user.getUser,
-       logOut: user.LogOut,
-       isLogged: user.isLogged
+       isLogged: user.isLogged,
+       logOut: user.logOut
    }
 
-   user.getUser();
-   user.isLogged();
+   //user.getUser();
+   //user.isLogged();
    return Session;
-
 });

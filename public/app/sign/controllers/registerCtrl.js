@@ -5,7 +5,7 @@ angular.module('Teamapp').controller('registerCtrl', function($scope, $http, $st
        $http.post('/register', $scope.user)
        .then(function(response){
             var data = response.data;
-            if(data.sucess){
+            if(data.success){
                 if(data.logged){
                     $state.transitionTo('app.dashboard');                    
                 }else{

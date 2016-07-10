@@ -1,14 +1,14 @@
 angular.module('Teamapp').controller('loginCtrl', function($scope, $http, $state, toastF, Session){
     $scope.master = {};
-    $scope.signin = function(){
+    $scope.signIn = function(){
         var user = {username: $scope.user.username, password: $scope.user.password};
         Session.logIn(user)
         .then(function(response){
             if(response.data.success){
-                toastF.success('Iniciaste Sesion Corretamente');
+                //toastF.success('Iniciaste Sesion Corretamente');
                 $state.transitionTo('app.dashboard');
             }else{
-                toastF.error('Erro de Autenticación, Verifica los datos');
+                //toastF.error('Error de Autenticación, Verifica los datos');
                 $scope.user = angular.copy($scope.master);
                 $scope.form.$setPristine();
             }

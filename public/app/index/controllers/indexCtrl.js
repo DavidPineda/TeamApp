@@ -11,7 +11,7 @@ app.controller('indexCtrl', function($rootScope, $state, $scope, Session){
 
     $scope.modulo = new Modulo($state.current).getName();
 
-    $scope.logout = function(){
+    $scope.logOut = function(){
         Session.logOut().then(function(response){
             if(response.data.destroy){
                 $state.go('login');
@@ -32,6 +32,5 @@ app.controller('indexCtrl', function($rootScope, $state, $scope, Session){
 
     $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
         $scope.modulo = new Modulo(toState).getName();
-        console.log(toState);
     });
 });
