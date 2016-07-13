@@ -16,9 +16,22 @@ angular.module('Teamapp').controller('resourceCtrl', function($scope, $http, $st
             headers: {'content-type': undefined}
         })
         .success(function(d){
-            console.log(d);
             //ToastService.success('Enviado Correctamente');
             $state.transitionTo('app.resources');
         });
     }
+});
+
+app.controller('sentsCtrl', function($scope, ResourceService){
+    ResourceService.getResourcesSent()
+    .success(function(response){
+        $scope.sents = response;
+    });
+});
+
+app.controller('receivedsCtrl', function($scope, ResourceService){
+    ResourceService.getResourcesReceived()
+    .success(function(response){
+        $scope.receiveds = response;
+    });
 })

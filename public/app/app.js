@@ -25,6 +25,14 @@ app.config(['$stateProvider',"$urlRouterProvider", function($stateProvider, $url
 		url: '/create',
 		templateUrl: 'partials/resources/templates/create.html',
 		controller: 'resourceCtrl'
+	}).state('app.resources.sents',{
+		url: '/sents',
+		templateUrl: 'partials/resources/templates/sents.html',
+		controller: 'sentsCtrl'
+	}).state('app.resources.receiveds',{
+		url: '/receiveds',
+		templateUrl: 'partials/resources/templates/receiveds.html',
+		controller: 'receivedsCtrl'
 	}).state('register',{
 		url: '/register',
 		templateUrl: 'partials/sign/templates/register.html',

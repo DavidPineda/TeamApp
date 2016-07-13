@@ -1,0 +1,12 @@
+<div class="table-responsive">
+    <table class="table table-mailbox">
+        <tr ng-show="!receiveds.length">
+            <td>No Hay Recursos Compartidos</td>
+        </tr>
+        <tr ng-repeat="resource in receiveds" class="unread">
+            <td class="name">{{resource.sender.name}}</td>
+            <td class="subject">{{resource.subject}}</td>
+            <td class="time">12:30 PM</td>
+        </tr>
+    </table>
+</div>

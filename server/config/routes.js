@@ -32,9 +32,13 @@ module.exports = function(app){
 
 	app.post('/tasks/ended', task.saveTasksEnded);	
 
-	app.get('/tasks/ended', task.getTask)
+	app.get('/tasks/ended', task.getTask);
 
-	app.post('/resource', multiparty, resource.saveResource)
+	app.post('/resource', multiparty, resource.saveResource);
+
+	app.get('/resources/received', resource.getResourcesReceived);
+
+	app.get('/resources/sent', resource.getResourcesSent);
 
 	app.get('*', function(req, res) {
 	  	res.render('index');

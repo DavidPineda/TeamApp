@@ -1,10 +1,10 @@
 angular.module('Teamapp').factory('ResourceService', function($http){
     return{
         getResourcesReceived: function(){
-            return $http.get('/resources/receiver');
+            return $http.get('/resources/received');
         },
-        getResourcesSend: function(){
-            return $http.get('/resources/send');
+        getResourcesSent: function(){
+            return $http.get('/resources/sent');
         },
         getDetail: function(resourceName){
             return $http.get('/resource/' + resourceName);

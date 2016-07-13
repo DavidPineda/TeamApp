@@ -39,6 +39,31 @@ exports.saveResource = function(req, res, next){
     });
 }
 
+exports.getResourcesReceived = function(req, res, next){
+    Resource.find({receiver: req.session.passport.user.username})
+    .populate('sender')
+    .exec(function(err, resources){
+        if(err){
+            console.log(err);
+        }else{
+            res.send(resources);
+        }
+    });
+}
+
+exports.getResourcesSent = function(req, res, next){
+    console.log('Send Respurces');
+    Resource.find({sender: req.session.passport.user._id})
+    .populate('sender')
+    .exec(function(err, resources){
+        if(err){
+            console.log(err);
+        }else{
+            res.send(resources);
+        }
+    });
+}
+
 function saveFiles(req, res, i, file){
     var root = path.dirname(require.main.filename);
     var originalFileName = file.originalFilename.split('.');
