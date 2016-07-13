@@ -19,7 +19,12 @@ app.config(['$stateProvider',"$urlRouterProvider", function($stateProvider, $url
 		controller: 'taskCtrl'
 	}).state('app.resources',{
 		url: '/resources',
-		templateUrl: 'partials/resources/templates/resources.html'
+		templateUrl: 'partials/resources/templates/resources.html',
+		controller: 'resourceCtrl'
+	}).state('app.resources.create',{
+		url: '/create',
+		templateUrl: 'partials/resources/templates/create.html',
+		controller: 'resourceCtrl'
 	}).state('register',{
 		url: '/register',
 		templateUrl: 'partials/sign/templates/register.html',

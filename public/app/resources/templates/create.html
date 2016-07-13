@@ -1,0 +1,27 @@
+<div class="box box-primary">
+    <div class="box-header">
+        <h3 class="box-title">Enviar Archivos</h3>
+    </div>
+    <form ng-submit="uploadFile()" enctype="multipart/form-data">
+        <div class="box-body">
+            <div class="form-group">
+                <label for="receiver">Usuarios</label>
+                <input type="text" class="form-control" id="receiver" ng-model="receiver" placeholder="Destinatarios"> 
+            </div>
+            <div class="form-group">
+                <label for="subject">Asunto</label>
+                <input type="text" class="form-control" id="subject" ng-model="subject" placeholder="Asunto">                
+            </div>
+            <div class="form-group">
+                <label for="files">Enviar Archivos</label>
+                <input type="file" file-input="files" multiple>                
+            </div>
+            <div class="form-group">
+                <li ng-repeat="file in files">{{file.name}}</li>
+            </div>                        
+        </div>
+        <div class="box-footer">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+    </form>
+</div>

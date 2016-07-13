@@ -1,6 +1,9 @@
 var user = require('../controllers/users');
 var task = require('../controllers/tasks');
+var resource = require('../controllers/resource')
 var passport = require('./passport');
+var multiparty = require('connect-multiparty')();
+
 module.exports = function(app){
 	app.get('/partials/*', function(req, res) {
 	  	res.render('../../public/app/' + req.params['0']);
@@ -30,6 +33,8 @@ module.exports = function(app){
 	app.post('/tasks/ended', task.saveTasksEnded);	
 
 	app.get('/tasks/ended', task.getTask)
+
+	app.post('/resource', multiparty, resource.saveResource)
 
 	app.get('*', function(req, res) {
 	  	res.render('index');
