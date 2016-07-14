@@ -33,6 +33,10 @@ app.config(['$stateProvider',"$urlRouterProvider", function($stateProvider, $url
 		url: '/receiveds',
 		templateUrl: 'partials/resources/templates/receiveds.html',
 		controller: 'receivedsCtrl'
+	}).state('app.resources.details',{
+		url: '/:idResource',
+		templateUrl: 'partials/resources/templates/details.html',
+		controller: 'detailsCtrl'
 	}).state('register',{
 		url: '/register',
 		templateUrl: 'partials/sign/templates/register.html',

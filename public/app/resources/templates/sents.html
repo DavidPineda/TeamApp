@@ -3,7 +3,7 @@
         <tr ng-show="!sents.length">
             <td>No Haz Enviado Ningún Recurso</td>
         </tr>
-        <tr ng-repeat="resource in sents" class="read">
+        <tr ng-repeat="resource in sents" class="read" ui-sref="app.resources.details({idResource: '{{resource._id.toString()}}'})">
             <td class="name">{{resource.sender.name}}</td>
             <td class="subject">{{resource.subject}}</td>
             <td class="time">12:30 PM</td>

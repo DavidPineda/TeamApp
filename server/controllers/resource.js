@@ -64,6 +64,18 @@ exports.getResourcesSent = function(req, res, next){
     });
 }
 
+exports.getDetailsResource = function(req, res, next){
+    Resource.findOne({_id: req.params.idResource})
+    .populate('sender')
+    .exec(function(err, resource){
+        if(!err){
+            res.send(resource);
+        }else{
+            console.log(resource);
+        }
+    })
+}
+
 function saveFiles(req, res, i, file){
     var root = path.dirname(require.main.filename);
     var originalFileName = file.originalFilename.split('.');

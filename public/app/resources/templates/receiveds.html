@@ -3,7 +3,7 @@
         <tr ng-show="!receiveds.length">
             <td>No Hay Recursos Compartidos</td>
         </tr>
-        <tr ng-repeat="resource in receiveds" class="unread">
+        <tr ng-repeat="resource in receiveds" class="unread" ui-sref="app.resources.details({idResource: '{{resource._id.toString()}}'})">
             <td class="name">{{resource.sender.name}}</td>
             <td class="subject">{{resource.subject}}</td>
             <td class="time">12:30 PM</td>

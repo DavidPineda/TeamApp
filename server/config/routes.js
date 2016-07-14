@@ -40,6 +40,8 @@ module.exports = function(app){
 
 	app.get('/resources/sent', resource.getResourcesSent);
 
+	app.get('/resource/:idResource', resource.getDetailsResource);
+
 	app.get('*', function(req, res) {
 	  	res.render('index');
 	});

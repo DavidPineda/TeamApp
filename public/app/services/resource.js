@@ -6,8 +6,8 @@ angular.module('Teamapp').factory('ResourceService', function($http){
         getResourcesSent: function(){
             return $http.get('/resources/sent');
         },
-        getDetail: function(resourceName){
-            return $http.get('/resource/' + resourceName);
+        getDetail: function(resource){
+            return $http.get('/resource/' + resource.id);
         }        
     }
 });

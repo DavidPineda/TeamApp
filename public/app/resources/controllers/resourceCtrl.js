@@ -34,4 +34,15 @@ app.controller('receivedsCtrl', function($scope, ResourceService){
     .success(function(response){
         $scope.receiveds = response;
     });
-})
+});
+
+app.controller('detailsCtrl', function($scope, $stateParams, ResourceService){
+    if($stateParams.hasOwnProperty('idResource')){
+        var idResource = $stateParams.idResource;
+        ResourceService.getDetail({id: idResource})
+        .success(function(response){
+            console.log(response);
+            $scope.resource = response;
+        });
+    }
+});
