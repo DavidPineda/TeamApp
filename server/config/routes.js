@@ -33,9 +33,9 @@ module.exports = function(app){
 
 	app.post('/tasks/ended', task.saveTasksEnded, timeline.TaskEnded);	
 
-	app.get('/tasks/ended', task.getTask, timeline.resourceSent);
+	app.get('/tasks/ended', task.getTask);
 
-	app.post('/resource', multiparty, resource.saveResource);
+	app.post('/resource', multiparty, resource.saveResource, timeline.resourceSent);
 
 	app.get('/resources/received', resource.getResourcesReceived);
 

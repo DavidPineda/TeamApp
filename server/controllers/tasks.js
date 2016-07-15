@@ -44,7 +44,7 @@ exports.saveTasksEnded = function(req, res, next){
            });
            req.body.tasks = tasks;
            res.send(tasks);
-           //next();
+           next();
        }
     });
 }

@@ -35,7 +35,7 @@ exports.TaskEnded = function(req, res, next){
             }
         ],function(err, data){
             if(!err){
-                res.send(data);
+                console.log(data);
             }else{
                 console.log(err);
             }
@@ -44,7 +44,7 @@ exports.TaskEnded = function(req, res, next){
 }
 
 exports.resourceSent = function(req, res, next){
-    var timeline = new TimeLine({
+    var timeLine = new TimeLine({
         resource: req.body.resource._id,
         action: 'Compartio Recurso',
         description: req.body.resource.subject,
