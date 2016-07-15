@@ -8,7 +8,7 @@ var timelineSchema = new Schema({
     type: String,
     date: {type: Date, default: Date()},
     action: String,
-    description: string
+    description: String
 });
 
 var Timeline = models.model('Timeline', timelineSchema);

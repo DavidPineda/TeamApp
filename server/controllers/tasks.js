@@ -42,7 +42,9 @@ exports.saveTasksEnded = function(req, res, next){
                task.ended.date = new Date();
                task.save();
            });
-           res.send(tasks)
+           req.body.tasks = tasks;
+           res.send(tasks);
+           //next();
        }
     });
 }

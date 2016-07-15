@@ -2,26 +2,23 @@
     <div class="col-md-12">
         <ul class="timeline">
             <li class="time-label">
-                <span class="bg-red">10 Feb 2015</span>
+                <span class="bg-red">{{today | date: 'dd MMM yyyy'}}</span>
             </li>
-            <li>
-                <i class="fa fa-check bg-blue"></i>
-                <div class="timeline-item">
-                    <h3 class="timeline-header"><a href="javascript:void(0);">Fulano de Tal</a>Termino una Tarea</h3>
+            <li ng-repeat="item in timeline">
+                <i class="fa bg-blue" ng-class="{'fa-check': item.type == 'task', 'fa-envelope': item.type == 'resource'}"></i>
+                <div class="timeline-item" ng-show="item.type == 'task'">
+                    <h3 class="timeline-header"><a href="javascript:void(0);">{{item.user.name}}</a>{{item.action}}</h3>
                     <div class="timeline-body">
-                        Diseñar la maqueta del sitio web    
-                    </div>                    
+                        {{item.description}}
+                    </div>    
+                </div>
+                <div class="timeline-item" ng-show="item.type == 'resource'">
+                    <h3 class="timeline-header"><a href="javascript:void(0);">{{item.resource.sender.name}}</a>{{item.action}} con {{item.resource.receiver.join(',')}}</h3>
+                    <div class="timeline-body">
+                        {{item.description}} 
+                    </div>                                                            
                 </div>
             </li>
-            <li>
-                <i class="fa fa-check bg-blue"></i>
-                <div class="timeline-item">
-                    <h3 class="timeline-header"><a href="javascript:void(0);">Susano Jose</a>Compartio un Recurso</h3>
-                    <div class="timeline-body">
-                        Imagenes del prototipo de maquetación 
-                    </div>                    
-                </div>
-            </li>            
         </ul>
     </div>
 </div>

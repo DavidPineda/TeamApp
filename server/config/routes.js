@@ -1,6 +1,7 @@
 var user = require('../controllers/users');
 var task = require('../controllers/tasks');
 var resource = require('../controllers/resource')
+var timeline = require('../controllers/timeline')
 var passport = require('./passport');
 var multiparty = require('connect-multiparty')();
 
@@ -30,9 +31,9 @@ module.exports = function(app){
 
 	app.get('/tasks', task.getTask);
 
-	app.post('/tasks/ended', task.saveTasksEnded);	
+	app.post('/tasks/ended', task.saveTasksEnded, timeline.TaskEnded);	
 
-	app.get('/tasks/ended', task.getTask);
+	app.get('/tasks/ended', task.getTask, timeline.resourceSent);
 
 	app.post('/resource', multiparty, resource.saveResource);
 
@@ -41,6 +42,8 @@ module.exports = function(app){
 	app.get('/resources/sent', resource.getResourcesSent);
 
 	app.get('/resource/:idResource', resource.getDetailsResource);
+
+	app.get('/timeline', timeline.getTimeLine);
 
 	app.get('*', function(req, res) {
 	  	res.render('index');

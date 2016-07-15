@@ -30,7 +30,9 @@ exports.saveResource = function(req, res, next){
     }, function(err, result){
         if(!err){
             saveResource(result, function(resource){
+                res.body.resource = resource;
                 res.send(resource);
+                next();
             });
         }else{
             res.send({msg: 'Fallo'});
