@@ -1,22 +1,22 @@
 <div class="box box-primary">
     <div class="box-header">
         <i class="fa fa-comments-o"></i>
-        <h3 class="box-title">Chat General</h3>
+        <h3 class="box-title">{{other.name}}</h3>
     </div>
     <div class="box-body chat" id="chat-box" style="overflow:auto; height:300px;" scroll-glue>
-        <div class="item" ng-repeat="message in messagesG">
+        <div class="item" ng-repeat="message in getChatMessages(messagesList)">
             <img src="img/avatar.png" alt="user image" class="online"/>
             <p class="message">
                 <a href="#" class="name">
                     <small class="text-muted pull-right"><i class="fa fa-clock-o"></i>2:15</small>
-                    {{message.name}}                    
+                    {{message.receiver.name}}                    
                 </a>
                 {{message.content}}
             </p>
         </div>
     </div>
     <div class="box-footer">
-        <form ng-submit="sendMessageGeneral()">
+        <form ng-submit="sendMessageIndividual()">
             <div class="input-group">
                 <input name="message" ng-model="message" class="form-control" placeholder="Escribir Mensaje"/>
                 <div class="input-group-btn">

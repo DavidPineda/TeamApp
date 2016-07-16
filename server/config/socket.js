@@ -42,5 +42,12 @@ module.exports = function(server){
         socket.on('new:message:general', function(message){
             io.emit('message:general', message);
         });
+
+        socket.on('new:message:individual', function(message){
+            var index = _.findIndex(users, {_id: message.receiver._id});
+            if(index > -1){
+                socket.broadcast.in(users[index].socket).emit('message:individual', message);
+            }
+        });        
     });
 }

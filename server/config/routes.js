@@ -1,5 +1,6 @@
 var user = require('../controllers/users');
 var task = require('../controllers/tasks');
+var chat = require('../controllers/chat');
 var resource = require('../controllers/resource')
 var timeline = require('../controllers/timeline')
 var passport = require('./passport');
@@ -46,6 +47,8 @@ module.exports = function(app){
 	app.get('/timeline', timeline.getTimeLine);
 
 	app.get('/timeline/resource', timeline.getTimeLineByResource);
+
+	app.post('/speaking', chat.createSpeaking);
 
 	app.get('*', function(req, res) {
 	  	res.render('index');

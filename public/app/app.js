@@ -20,6 +20,10 @@ app.config(['$stateProvider', "$urlRouterProvider", "$locationProvider", functio
 		url: '/general',
 		templateUrl: 'partials/chat/templates/general.html',
 		controller: 'chatCtrl'
+	}).state('app.chat.individual',{
+		url: '/:idChat',
+		templateUrl: 'partials/chat/templates/individual.html',
+		controller: 'chatCtrl'
 	}).state('app.task',{
 		url: '/task',
 		templateUrl: 'partials/task/templates/task.html',

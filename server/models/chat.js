@@ -2,13 +2,13 @@ var models = require('./models');
 Schema = models.Schema;
 
 var chatSchema = new Schema({
-    remitente: {type: Schema.Types.ObjectId, ref: 'User'},
-    destinatario: {type: Schema.Types.ObjectId, ref: 'User '},
-    tipo: String,
-    mensaje: [{
-        remitente: {type: Schema.Types.ObjectId, ref: 'User'},
-        destinatario: {type: Schema.Types.ObjectId, ref: 'User '},
-        contenido: String        
+    sender: {type: Schema.Types.ObjectId, ref: 'User'},
+    receiver: {type: Schema.Types.ObjectId, ref: 'User'},
+    type: String,
+    message: [{
+        sender: {type: Schema.Types.ObjectId, ref: 'User'},
+        receiver: {type: Schema.Types.ObjectId, ref: 'User '},
+        content: String        
     }]
 });
 
