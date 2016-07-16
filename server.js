@@ -8,6 +8,7 @@ var config = {
 
 require('./server/config/express')(app, config);
 require('./server/config/routes')(app);
+require('./server/config/socket')(server);
 
 server.listen(3000, function(){
   console.log("Servidor Corriendo en el Puerto 3000");

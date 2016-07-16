@@ -1,4 +1,4 @@
-angular.module('Teamapp').controller('resourceCtrl', function($scope, $http, $state, ToastService, ResourceService){
+angular.module('Teamapp').controller('resourceCtrl', function($scope, $http, $state, ToastService, ResourceService, Socket, DashboardService){
     $scope.filesChanged = function(elm) {
         $scope.files = elm.files;
         $scope.$apply();
@@ -16,8 +16,12 @@ angular.module('Teamapp').controller('resourceCtrl', function($scope, $http, $st
             headers: {'content-type': undefined}
         })
         .success(function(d){
-            //ToastService.success('Enviado Correctamente');
-            $state.transitionTo('app.resources');
+            DashboardService.getTimeLineByResource()
+            .success(function(response){
+                Socket.emit('new:resource', response);
+                //ToastService.success('Enviado Correctamente');
+                $state.transitionTo('app.resources');
+            });
         });
     }
 });
@@ -41,7 +45,6 @@ app.controller('detailsCtrl', function($scope, $stateParams, ResourceService){
         var idResource = $stateParams.idResource;
         ResourceService.getDetail({id: idResource})
         .success(function(response){
-            console.log(response);
             $scope.resource = response;
         });
     }

@@ -1,4 +1,4 @@
-angular.module('Teamapp').controller('taskCtrl', function($scope, TaskService){
+angular.module('Teamapp').controller('taskCtrl', function($scope, TaskService, Socket){
    var checks = [];
    $scope.tasks = [];
    $scope.taskEndeds = [];
@@ -19,13 +19,14 @@ angular.module('Teamapp').controller('taskCtrl', function($scope, TaskService){
        var ids = _.map(checks, '_id');
        TaskService.saveTasksEnded({ids: ids})
        .then(function(response){
-           _.each(response.data, function(item){
-               var item = item;
+           _.each(response.data.populated, function(item){
+               var item = item.task;
                _.remove($scope.tasks, function(task){
                    return task._id === item._id;
                });
-               $scope.taskEndeds.push(item);
+               $scope.taskEndeds.push(item);               
            });
+           Socket.emit('new:task', response.data.populated);
        });
    }
 

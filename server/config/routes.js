@@ -45,6 +45,8 @@ module.exports = function(app){
 
 	app.get('/timeline', timeline.getTimeLine);
 
+	app.get('/timeline/resource', timeline.getTimeLineByResource);
+
 	app.get('*', function(req, res) {
 	  	res.render('index');
 	});

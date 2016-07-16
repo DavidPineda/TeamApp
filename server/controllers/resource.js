@@ -10,13 +10,18 @@ var newResource = new Resource({});
 exports.saveResource = function(req, res, next){
     async.series({
         files: function(callback){
-            if(req.files.file.lenght > 0){
-                var result = _.map(req.files.file, function(file, i){
-                    return saveFiles(req, res, i, file)
-                });
-                callback(null, result);
+            if (req.files.hasOwnProperty('file')) {
+                console.log(req.files);	            
+                if(req.files.file.lenght > 0){
+                    var result = _.map(req.files.file, function(file, i){
+                        return saveFiles(req, res, i, file)
+                    });
+                    callback(null, result);
+                }else{
+                    callback(null, saveFiles(req, res, 0, req.files.file));
+                }            
             }else{
-                callback(null, saveFiles(req, res, 0, req.files.file));
+                callback(null, []);
             }
         },
         data: function(callback){
@@ -30,9 +35,11 @@ exports.saveResource = function(req, res, next){
     }, function(err, result){
         if(!err){
             saveResource(result, function(resource){
-                req.body.resource = resource;
-                res.send(resource);
-                next();
+                Resource.populate(resource, {path: 'resource.sender', model: 'User', select: 'name username'}, function(err, resource ){
+                    req.body.resource = resource;
+                    res.send(resource);
+                    next();
+                });
             });
         }else{
             res.send({msg: 'Fallo'});

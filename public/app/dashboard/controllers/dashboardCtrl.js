@@ -1,4 +1,4 @@
-angular.module('Teamapp').controller('dashboardCtrl', function($scope, DashboardService){
+angular.module('Teamapp').controller('dashboardCtrl', function($scope, DashboardService, Socket){
     $scope.today = new Date();
     $scope.timeline = [];
 
@@ -8,8 +8,13 @@ angular.module('Teamapp').controller('dashboardCtrl', function($scope, Dashboard
     });
 
     $scope.unshiftTimeLine = function(data){
+        console.log(data);
         _.each(data, function(item, i){
             $scope.timeline.unshift(item);
         })
     }
+
+    Socket.on('new:action', function(data){
+        $scope.unshiftTimeLine(data);
+    })
 });

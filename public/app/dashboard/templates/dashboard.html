@@ -7,7 +7,7 @@
             <li ng-repeat="item in timeline">
                 <i class="fa bg-blue" ng-class="{'fa-check': item.type == 'task', 'fa-envelope': item.type == 'resource'}"></i>
                 <div class="timeline-item" ng-show="item.type == 'task'">
-                    <h3 class="timeline-header"><a href="javascript:void(0);">{{item.user.name}}</a>{{item.action}}</h3>
+                    <h3 class="timeline-header"><a href="javascript:void(0);">{{item.user.name}} </a>{{item.action}}</h3>
                     <div class="timeline-body">
                         {{item.description}}
                     </div>    

@@ -35,7 +35,9 @@ exports.TaskEnded = function(req, res, next){
             }
         ],function(err, data){
             if(!err){
-                console.log(data);
+                res.send({populated: data, lean: req.body.task});
+                console.log('!Accion Guardada');
+                console.log('task');
             }else{
                 console.log(err);
             }
@@ -64,9 +66,22 @@ exports.getTimeLine = function(req, res, next){
     var year = d.getFullYear();
     var month = d.getMonth();
     var day = d.getDay();
-    console.log('Fecha: ', new Date(year, month, day));
 
     TimeLine.find({date: {$gte: new Date(year, month, day)}})
+    .populate('user task resource')
+    .exec(function(err, docs){
+        if(!err){
+            TimeLine.populate(docs, {path: 'resource.sender', model: 'User'}, function(err, items){
+                res.send(items);
+            });
+        }else{
+            console.log(err);
+        }
+    });
+}
+
+exports.getTimeLineByResource = function(req, res, next){
+    TimeLine.find().sort({created_at: -1})
     .populate('user task resource')
     .exec(function(err, docs){
         if(!err){
