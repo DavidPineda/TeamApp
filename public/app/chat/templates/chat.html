@@ -11,16 +11,11 @@
                         <ul class="nav nav-pills nav-stacked" style="overflow:auto;height:300px">
                             <li class="header">Equipos</li>
                             <li><a href="#"><i class="fa fa-group zz"></i>General</a></li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-circle text-succes"></i>Susano Jose
+                            <li ui-sref-active="active" ng-repeat="user in usersConnected" href="javascript:void(0);">
+                                <a ng-click="goToChat(user._id)">
+                                    <i class="fa fa-circle text-succes"></i>{{user.name}}
                                 </a>
-                            </li>
-                            <li>
-                                <a href="#">
-                                    <i class="fa fa-circle text-succes"></i>Andres Pimiento
-                                </a>
-                            </li>                            
+                            </li>                           
                         </ul>
                     </div>
                 </div>

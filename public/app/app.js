@@ -1,7 +1,9 @@
 var app = angular.module('Teamapp',['ui.router', 'ngAnimate', 'toastr']);
 
-app.config(['$stateProvider',"$urlRouterProvider", function($stateProvider, $urlRouterProvider){
+app.config(['$stateProvider', "$urlRouterProvider", "$locationProvider", function($stateProvider, $urlRouterProvider, $locationProvider){
 	$urlRouterProvider.otherwise('/app/dashboard');
+	$locationProvider.html5Mode(true);
+
 	$stateProvider.state('app',{		
 		url: '/app',
 		templateUrl: 'partials/index/templates/index.html',
@@ -13,6 +15,11 @@ app.config(['$stateProvider',"$urlRouterProvider", function($stateProvider, $url
 	}).state('app.chat',{
 		url: '/chat',
 		templateUrl: 'partials/chat/templates/chat.html',
+		controller: 'chatCtrl'
+	}).state('app.chat.general',{
+		url: '/general',
+		templateUrl: 'partials/chat/templates/general.html',
+		controller: 'chatCtrl'
 	}).state('app.task',{
 		url: '/task',
 		templateUrl: 'partials/task/templates/task.html',
