@@ -8,7 +8,6 @@ angular.module('Teamapp').controller('dashboardCtrl', function($scope, Dashboard
     });
 
     $scope.unshiftTimeLine = function(data){
-        console.log(data);
         _.each(data, function(item, i){
             $scope.timeline.unshift(item);
         })

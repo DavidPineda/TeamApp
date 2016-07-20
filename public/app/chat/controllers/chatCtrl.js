@@ -39,7 +39,6 @@ app.controller('chatCtrl', function($scope, $stateParams, $state, Socket, Sessio
             data = {content: $scope.message, type: 'general', sender: sender};
             ChatService.sendMessage(data)
             .then(function(response){
-                data.sender = response.data.sender;
                 Socket.emit('new:message:general', data);
                 $scope.message = '';
             });
