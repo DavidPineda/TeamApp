@@ -7,7 +7,7 @@ var chatSchema = new Schema({
     type: String,
     message: [{
         sender: {type: Schema.Types.ObjectId, ref: 'User'},
-        receiver: {type: Schema.Types.ObjectId, ref: 'User '},
+        receiver: {type: Schema.Types.ObjectId, ref: 'User'},
         content: String        
     }]
 });

@@ -50,6 +50,12 @@ module.exports = function(app){
 
 	app.post('/speaking', chat.createSpeaking);
 
+	app.get('/messages/general', chat.getMessagesGeneral);
+
+	app.get('/messages/:idChat', chat.getMesagesIndividual);
+
+	app.post('/message', chat.sendMessage);
+
 	app.get('*', function(req, res) {
 	  	res.render('index');
 	});

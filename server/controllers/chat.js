@@ -92,6 +92,109 @@ exports.createSpeaking = function(req, res, next){
     }
 }
 
+exports.sendMessage = function(req, res, next){
+    if(req.body.type == 'individual'){
+        Chat.findOne({_id: req.body.chat}, {message: {$slice: 0}})
+        .exec(function(err, chat){
+            if(!err){
+                var data = {
+                    content: req.body.content, 
+                    receiver: req.body.receiver._id,
+                    sender: req.session.passport.user._id
+                };
+                chat.message.push(data);
+                chat.save(function(err, chat){
+                    if(!err){
+                        async.waterfall([
+                            function(callback){
+                                User.populate(chat, {path: 'message.sender'},
+                                    function(err, r1){
+                                        if(err){
+                                            console.log("Error llenado el remitente" + err);
+                                        }else{
+                                            console.log(r1);
+                                        }
+                                        callback(null, r1);
+                                    }
+                                );
+                            },
+                            function(r1, callback){
+                                User.populate(r1, {path: 'message.receiver'},
+                                    function(err, r2){
+                                        if(err){
+                                            console.log("Error llenado el destinatario" + err);
+                                        }else{
+                                            console.log(r2);
+                                        }
+                                        callback(null, r2);
+                                    }
+                                )
+                            }
+                        ], function(err, message){
+                            if(!err){
+                                res.send(message);
+                            }else{
+                                res.send({success: false, message: err});
+                            }
+                        });
+                    }else{
+                        res.send({success: false, message: err});
+                    }
+                });
+            }else{
+                res.send({success: false, message: err});
+            }
+        });
+    }else if(req.body.type == 'general'){
+        Chat.findOne({type: 'general'})
+        .exec(function(err, chat){
+            if(!err){
+                var data = {
+                    content: req.body.content,
+                    sender: req.body.sender
+                };                
+                chat.message.push(data);
+                chat.save(function(err, chat){
+                    if(!err){
+                        Chat.populate(chat, {path: 'sender', model: 'User'}, function(err, chat){
+                            console.log(chat);
+                            res.send(chat);
+                        });
+                    }
+                });
+            }
+        });
+    }
+}
+
+exports.getMessagesGeneral = function(req, res, next){
+    Chat.find({type: 'general'})
+    .populate('message.sender')
+    .exec(function(err, chat){
+        if(!err){
+            res.send(chat);
+        }else{
+            console.log(err);
+        }
+    });
+}
+
+exports.getMesagesIndividual = function(req, res, next){
+    Chat.findOne({_id: req.params.idChat})
+    .populate('sender')
+    .populate('receiver')
+    .populate('message.sender')
+    .populate('message.receiver')
+    .exec(function(err, chat){
+        if(!err){
+            var data = whoIsMe(req.session.passport.user, chat);
+            res.send(data);
+        }else{
+            console.log(err);
+        }
+    });
+}
+
 function whoIsMe(user, chat){
     var data = {chat: chat, me: {}, other: {}};
     if(chat.receiver._id == user._id){

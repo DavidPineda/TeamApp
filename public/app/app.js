@@ -1,7 +1,7 @@
 var app = angular.module('Teamapp',['ui.router', 'ngAnimate', 'toastr']);
 
-app.config(['$stateProvider', "$urlRouterProvider", "$locationProvider", function($stateProvider, $urlRouterProvider, $locationProvider){
-	$urlRouterProvider.otherwise('/app/dashboard');
+app.config(['$stateProvider', "$urlRouterProvider", "$locationProvider", "$urlMatcherFactoryProvider", function($stateProvider, $urlRouterProvider, $locationProvider, $urlMatcherFactoryProvider){
+	$urlRouterProvider.otherwise('/login');
 	$locationProvider.html5Mode(true);
 
 	$stateProvider.state('app',{		
